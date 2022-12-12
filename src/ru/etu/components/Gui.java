@@ -13,6 +13,8 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.*;
 import java.util.*;
 
@@ -23,7 +25,7 @@ public class Gui {
     public static void main(String[] args) throws SQLException {
         JFrame frame = new JFrame("Мероприятия");
         //frame.setTitle("Новое окно!!!");
-        frame.setSize(1200, 600);
+        frame.setSize(1200, 800);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,6 +37,7 @@ public class Gui {
 
     private static void table(JFrame frame) throws SQLException {
 
+        //создание и заполнение таблицы с мероприятиями
         ArrayList<Integer> arEventsId = Queries.getEventsId();
         ArrayList<Event> events = new ArrayList<>();
         for (int event_id : arEventsId) {
@@ -42,42 +45,130 @@ public class Gui {
         }
         eventTableModel eventTableModel = new eventTableModel(events);
         JTable table = new JTable(eventTableModel);
-        /*TableCellRenderer renderer = new DefaultTableCellRenderer(){
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                if ((column+row)%2==0){
-                    setForeground(Color.red);
-                }else{
-                    setForeground(Color.blue);
-                }
-                return this;
-            }
-        };
-        table.setDefaultRenderer(String.class, renderer);
-        table.setDefaultRenderer(Byte.class, renderer);*/
         frame.add(new JScrollPane(table));
 
+        //кнопка открытия окна добавления нового мероприятия
         JButton addButton = new JButton("Создать мероприятие");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                events.add(new Event("", "", "", "", 0, 0, "", ""));
-                eventTableModel.fireTableDataChanged();
+                //окно добавления нового мероприятия
+                JFrame frame_add_event = new JFrame("Новое мероприятие");
+                frame_add_event.setSize(800, 600);
+                frame_add_event.setLocationRelativeTo(null);
+                frame_add_event.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        super.windowClosing(e);
+                        frame_add_event.dispose();
+                        frame.setVisible(true);
+                    }
+                    /*@Override
+                    public void windowOpened(WindowEvent e) {
+                        super.windowOpened(e);
+                        JOptionPane.showMessageDialog(null, "Welcome to the System");
+                    }*/
+
+                });
+                frame.dispose();
+
+                JPanel main_panel = new JPanel();
+                //GridLayout layout = new GridLayout(8, 1);
+                main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
+                String[] titles = {
+                        "Название мероприятия",
+                        "Тематика",
+                        "Дата и время",
+                        "Место проведения",
+                        "Тип мероприятия",
+                        "Жанр",
+                        "Описание",
+                        "Программа"
+                };
+                /*String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+
+                //Create the combo box, select item at index 4.
+                //Indices start at 0, so 4 specifies the pig.
+                JComboBox petList = new JComboBox(petStrings);
+                petList.setSelectedIndex(4);
+                petList.addActionListener(this);*/
+
+                for (String title : titles) {
+                    JPanel panel = new JPanel();
+                    JLabel title_label = new JLabel(title, JLabel.TRAILING);
+                    title_label.setPreferredSize(new Dimension(200,50));
+                    title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
+                    JTextField textField = new JTextField(30);
+                    title_label.setLabelFor(textField);
+                    panel.add(title_label);
+                    panel.add(textField);
+                    main_panel.add(panel);
+                }
+
+
+                //кнопка добавления нового мероприятия
+                JButton addButton = new JButton("Добавить мероприятие");
+                addButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        events.add(new Event("", "", "", "", 0, 0, "", ""));
+                        eventTableModel.fireTableDataChanged();
+                        frame_add_event.dispose();
+                        frame.setVisible(true);
+                    }
+                });
+
+                //кнопка отмены добавления нового мероприятия
+                JButton cancelButton = new JButton("Отменить");
+                cancelButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame_add_event.dispose();
+                        frame.setVisible(true);
+                    }
+                });
+                frame_add_event.add(main_panel, BorderLayout.CENTER);
+                JPanel btn_panel = new JPanel();
+                btn_panel.add(addButton);
+                btn_panel.add(cancelButton);
+                frame_add_event.add(btn_panel, BorderLayout.SOUTH);
+                frame_add_event.setVisible(true);
             }
         });
 
+        //кнопка удаления мероприятий
         JButton delButton = new JButton("Удалить");
         delButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int[] selectedIndices = table.getSelectionModel().getSelectedIndices();
-                ArrayList<Event> ev = new ArrayList<>();
-                for(int i: selectedIndices){
-                    ev.add(events.get(i));
+                if (selectedIndices.length != 0) {
+                    ArrayList<Event> deleted_events = new ArrayList<>();
+                    for(int i: selectedIndices){
+                        deleted_events.add(events.get(i));
+                    }
+                    String title = "";
+                    if (selectedIndices.length == 1) {
+                        title = "Вы уверены, что хотите удалить мероприятие " + table.getValueAt(selectedIndices[0], 0) + "?";
+                    } else {
+                        title = "Вы уверены, что хотите удалить мероприятий: " + selectedIndices.length + " шт?";
+                    }
+                    UIManager.put("OptionPane.yesButtonText"   , "Да"    );
+                    UIManager.put("OptionPane.noButtonText"    , "Нет"   );
+                    int confirmation = JOptionPane.showConfirmDialog(
+                            null,
+                            title,
+                            "Подтверждение удаления",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                    System.out.println(confirmation);
+                    if (confirmation == JOptionPane.YES_OPTION) {
+                        events.removeAll(deleted_events);
+                        eventTableModel.fireTableDataChanged();
+                    }
                 }
-                events.removeAll(ev);
-                eventTableModel.fireTableDataChanged();
+
             }
         });
 
