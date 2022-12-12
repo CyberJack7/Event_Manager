@@ -85,23 +85,54 @@ public class Gui {
                         "Описание",
                         "Программа"
                 };
-                /*String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 
-                //Create the combo box, select item at index 4.
-                //Indices start at 0, so 4 specifies the pig.
-                JComboBox petList = new JComboBox(petStrings);
-                petList.setSelectedIndex(4);
-                petList.addActionListener(this);*/
+                String[] genres;
+                try {
+                    genres = Queries.getGenresInfo();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String[] event_types;
+                try {
+                    event_types = Queries.getEventTypesInfo();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+
 
                 for (String title : titles) {
                     JPanel panel = new JPanel();
                     JLabel title_label = new JLabel(title, JLabel.TRAILING);
-                    title_label.setPreferredSize(new Dimension(200,50));
+                    title_label.setPreferredSize(new Dimension(200, 50));
                     title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
-                    JTextField textField = new JTextField(30);
-                    title_label.setLabelFor(textField);
+                    Component input;
+                    if (title.equals("Тип мероприятия")) {
+                        input = new JComboBox(event_types);
+                        input.setPreferredSize(new Dimension(332, 20));
+                        title_label.setLabelFor(input);
+                    } else if (title.equals("Жанр")) {
+                        input = new JComboBox(genres);
+                        input.setPreferredSize(new Dimension(332, 20));
+                        title_label.setLabelFor(input);
+                    } else if (title.equals("Описание") || title.equals("Программа")) {
+                        JTextArea text_area = new JTextArea(5, 30);
+                        text_area.setLineWrap(true);
+                        text_area.setWrapStyleWord(true);
+                        input = new JScrollPane(text_area);
+                        ((JScrollPane) input).setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                        input.setPreferredSize(new Dimension(332, 87));
+                        title_label.setLabelFor(input);
+                    } else if (title.equals("Дата и время")) {
+                        input = new JTextField(30);
+                        title_label.setLabelFor(input);
+                    } else {
+                        input = new JTextField(30);
+                        title_label.setLabelFor(input);
+                    }
                     panel.add(title_label);
-                    panel.add(textField);
+                    panel.add(input);
                     main_panel.add(panel);
                 }
 
