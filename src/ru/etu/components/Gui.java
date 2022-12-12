@@ -21,106 +21,28 @@ import java.sql.ResultSet;
 
 public class Gui {
     public static void main(String[] args) throws SQLException {
-        JFrame frame = new JFrame("Новое окно");
-        frame.setTitle("Новое окно!!!");
-        frame.setSize(800, 600);
+        JFrame frame = new JFrame("Мероприятия");
+        //frame.setTitle("Новое окно!!!");
+        frame.setSize(1200, 600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-
-//        initContent(frame);
         table(frame);
 
-
-        /*JFrame frame = new JFrame("Новое окно");
-        frame.setTitle("Новое окно!!!");
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        JButton button = new JButton(name);
-        frame.add(button, BorderLayout.SOUTH);
-
-        frame.setVisible(true);*/
-
+//        initContent(frame);
         frame.setVisible(true);
-
     }
 
     private static void table(JFrame frame) throws SQLException {
 
-
         ArrayList<Integer> arEventsId = Queries.getEventsId();
-        frame.setLayout(new GridLayout(2, 2));
+        ArrayList<Event> events = new ArrayList<>();
         for (int event_id : arEventsId) {
-            Event event = new Event(event_id);
-            System.out.println(event);
-            JPanel panel = new JPanel();
-            JLabel title = new JLabel("Название мероприятия:");
-            JLabel value = new JLabel(event.getEventName());
-            panel.add(title);
-            panel.add(value);
-            frame.add(panel);
-            JPanel panel1 = new JPanel();
-            JLabel title1 = new JLabel("Тематика:");
-            JLabel value1 = new JLabel(event.getSubject());
-            panel1.add(title1);
-            panel1.add(value1);
-            frame.add(panel1);
-            JPanel panel2 = new JPanel();
-            JLabel title2 = new JLabel("Дата и время:");
-            JLabel value2 = new JLabel(event.getDate());
-            panel2.add(title2);
-            panel2.add(value2);
-            frame.add(panel2);
-            JPanel panel3 = new JPanel();
-            JLabel title3 = new JLabel("Место:");
-            JLabel value3 = new JLabel(event.getPlace());
-            panel3.add(title3);
-            panel3.add(value3);
-            frame.add(panel3);
-            JPanel panel4 = new JPanel();
-            JLabel title4 = new JLabel("Тип мероприятия:");
-            JLabel value4 = new JLabel(String.valueOf(event.getEventTypeId()));
-            panel4.add(title4);
-            panel4.add(value4);
-            frame.add(panel4);
-            JPanel panel5 = new JPanel();
-            JLabel title5 = new JLabel("Жанр:");
-            JLabel value5 = new JLabel(String.valueOf(event.getGenreId()));
-            panel5.add(title5);
-            panel5.add(value5);
-            frame.add(panel5);
-            JPanel panel6 = new JPanel();
-            JLabel title6 = new JLabel("Описание:");
-            JLabel value6 = new JLabel(event.getDescription());
-            panel6.add(title6);
-            panel6.add(value6);
-            frame.add(panel6);
-            JPanel panel7 = new JPanel();
-            JLabel title7 = new JLabel("Программа:");
-            JLabel value7 = new JLabel(event.getProgram());
-            panel7.add(title7);
-            panel7.add(value7);
-            frame.add(panel7);
+            events.add(new Event(event_id));
         }
-        JButton addButton = new JButton("Создать мероприятие");
-        JButton delButton = new JButton("Удалить");
-        JPanel panel8 = new JPanel();
-        panel8.add(delButton);
-        panel8.add(addButton);
-        frame.add(panel8, BorderLayout.SOUTH);
-//        frame.add(new JScrollPane(table));
-
-        /*ArrayList<Student> students = new ArrayList<>();
-        students.add(new Student("Name1", "1"));
-        students.add(new Student("Name2", "2"));
-        students.add(new Student("Name3", "3"));
-        students.add(new Student("Name4", "4"));
-
-        StudentsTableModel studentsTableModel = new StudentsTableModel(students);
-        JTable table = new JTable(studentsTableModel);
-        TableCellRenderer renderer = new DefaultTableCellRenderer(){
+        eventTableModel eventTableModel = new eventTableModel(events);
+        JTable table = new JTable(eventTableModel);
+        /*TableCellRenderer renderer = new DefaultTableCellRenderer(){
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -133,41 +55,38 @@ public class Gui {
             }
         };
         table.setDefaultRenderer(String.class, renderer);
-        table.setDefaultRenderer(Byte.class, renderer);
+        table.setDefaultRenderer(Byte.class, renderer);*/
+        frame.add(new JScrollPane(table));
 
-        JButton addButton = new JButton("Add");
+        JButton addButton = new JButton("Создать мероприятие");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                students.add(new Student("Name???", "??????"));
-                studentsTableModel.fireTableDataChanged();
+                events.add(new Event("", "", "", "", 0, 0, "", ""));
+                eventTableModel.fireTableDataChanged();
             }
         });
 
-        JButton delButton = new JButton("Del");
+        JButton delButton = new JButton("Удалить");
         delButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int[] selectedIndices = table.getSelectionModel().getSelectedIndices();
-                ArrayList<Student> st = new ArrayList<>();
+                ArrayList<Event> ev = new ArrayList<>();
                 for(int i: selectedIndices){
-                    st.add(students.get(i));
+                    ev.add(events.get(i));
                 }
-                students.removeAll(st);
-                studentsTableModel.fireTableDataChanged();
+                events.removeAll(ev);
+                eventTableModel.fireTableDataChanged();
             }
         });
 
-        JPanel panel = new JPanel();
-        panel.add(delButton);
-        panel.add(addButton);
-        frame.add(panel, BorderLayout.SOUTH);
-        frame.add(new JScrollPane(table));*/
-
-
-
-
+        JPanel btn_panel = new JPanel();
+        btn_panel.add(addButton);
+        btn_panel.add(delButton);
+        frame.add(btn_panel, BorderLayout.SOUTH);
     };
+
     private static void initContent(JFrame frame){
         /*frame.setLayout(new FlowLayout());
         JToggleButton toggleButton = new JToggleButton("toggleButton");

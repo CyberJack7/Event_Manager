@@ -42,8 +42,7 @@ public class Event {
         conn.close();
     }
 
-    /*public Event(int eventId, String eventName, String subject, String date, String place, int eventTypeId, int genreId, String description, String program) {
-        this.eventId = eventId;
+    public Event(String eventName, String subject, String date, String place, int eventTypeId, int genreId, String description, String program) {
         this.eventName = eventName;
         this.subject = subject;
         this.date = date;
@@ -53,10 +52,6 @@ public class Event {
         this.description = description;
         this.program = program;
     }
-
-    public Event(String eventName, String date) {
-
-    }*/
 
     public int getEventId() {
         return eventId;
