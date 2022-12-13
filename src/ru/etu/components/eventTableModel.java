@@ -31,7 +31,7 @@ public class eventTableModel extends AbstractTableModel {
         switch (columnIndex){
             case 0: return "Название";
             case 1: return "Тематика";
-            case 2: return "Дата и время";
+            case 2: return "Дата";
             case 3: return "Место";
             case 4: return "Тип мероприятия";
             case 5: return "Жанр";
@@ -43,11 +43,7 @@ public class eventTableModel extends AbstractTableModel {
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        if (columnIndex == 4 || columnIndex == 5) {
-            return Integer.class;
-        } else {
-            return String.class;
-        }
+        return String.class;
     }
 
     @Override
@@ -63,8 +59,8 @@ public class eventTableModel extends AbstractTableModel {
             case 1: return event.getSubject();
             case 2: return event.getDate();
             case 3: return event.getPlace();
-            case 4: return event.getEventTypeId();
-            case 5: return event.getGenreId();
+            case 4: return event.getEventType();
+            case 5: return event.getGenre();
             case 6: return event.getDescription();
             case 7: return event.getProgram();
         }
@@ -88,10 +84,10 @@ public class eventTableModel extends AbstractTableModel {
                 event.setPlace((String) aValue);
                 break;
             case 4:
-                event.setEventTypeId((Integer) aValue);
+                event.setEventType((String) aValue);
                 break;
             case 5:
-                event.setGenreId((Integer) aValue);
+                event.setGenre((String) aValue);
                 break;
             case 6:
                 event.setDescription((String) aValue);

@@ -29,7 +29,7 @@ public class Queries {
         return arEventsId;
     }
 
-    //ассоциативный массив жанров genre_id => genre_name
+    //получение списка жанров
     public static String[] getGenresInfo() throws SQLException {
         ArrayList<String> arGenres = new ArrayList<>();
 
@@ -45,8 +45,9 @@ public class Queries {
         stmt.close();
         conn.close();
         int amount_genres = arGenres.size();
-        String[] genres = new String[amount_genres];
-        int i = 0;
+        String[] genres = new String[amount_genres + 1];
+        genres[0] = "Не выбрано";
+        int i = 1;
         for (String genre : arGenres) {
             genres[i] = genre;
             i++;
@@ -55,6 +56,7 @@ public class Queries {
         return genres;
     }
 
+    //получение списка типов мероприятий
     public static String[] getEventTypesInfo() throws SQLException {
         ArrayList<String> arEventTypes = new ArrayList<>();
 
@@ -70,13 +72,48 @@ public class Queries {
         stmt.close();
         conn.close();
         int amount_types = arEventTypes.size();
-        String[] event_types = new String[amount_types];
-        int i = 0;
+        String[] event_types = new String[amount_types + 1];
+        event_types[0] = "Не выбрано";
+        int i = 1;
         for (String event_type : arEventTypes) {
             event_types[i] = event_type;
             i++;
         }
 
         return event_types;
+    }
+
+    //получение id типа мероприятия по названию
+    public static Integer getEventTypeId(String event_type_name) throws SQLException {
+        Connection conn = JdbcRunner.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet event_id_query = stmt.executeQuery( "SELECT event_type_id FROM public.event_type " +
+                "WHERE type_name = '" + event_type_name + "'");
+
+        Integer event_id = null;
+        while (event_id_query.next()) {
+            event_id = event_id_query.getInt("event_type_id");
+        }
+        event_id_query.close();
+        stmt.close();
+        conn.close();
+        return event_id;
+    }
+
+    //получение id жанра по названию
+    public static Integer getGenreId(String genre_name) throws SQLException {
+        Connection conn = JdbcRunner.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet genre_id_query = stmt.executeQuery( "SELECT genre_id FROM public.genre " +
+                "WHERE genre_name = '" + genre_name + "'");
+
+        Integer genre_id = null;
+        while (genre_id_query.next()) {
+            genre_id = genre_id_query.getInt("genre_id");
+        }
+        genre_id_query.close();
+        stmt.close();
+        conn.close();
+        return genre_id;
     }
 }

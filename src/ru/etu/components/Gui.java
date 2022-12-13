@@ -1,5 +1,10 @@
 package ru.etu.components;
 
+import org.jdatepicker.DateLabelFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.model.UtilDateModel;
+
 import ru.etu.components.JdbcRunner;
 import ru.etu.components.Queries;
 import ru.etu.components.Event;
@@ -52,118 +57,7 @@ public class Gui {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //окно добавления нового мероприятия
-                JFrame frame_add_event = new JFrame("Новое мероприятие");
-                frame_add_event.setSize(800, 600);
-                frame_add_event.setLocationRelativeTo(null);
-                frame_add_event.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        super.windowClosing(e);
-                        frame_add_event.dispose();
-                        frame.setVisible(true);
-                    }
-                    /*@Override
-                    public void windowOpened(WindowEvent e) {
-                        super.windowOpened(e);
-                        JOptionPane.showMessageDialog(null, "Welcome to the System");
-                    }*/
-
-                });
-                frame.dispose();
-
-                JPanel main_panel = new JPanel();
-                //GridLayout layout = new GridLayout(8, 1);
-                main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
-                String[] titles = {
-                        "Название мероприятия",
-                        "Тематика",
-                        "Дата и время",
-                        "Место проведения",
-                        "Тип мероприятия",
-                        "Жанр",
-                        "Описание",
-                        "Программа"
-                };
-
-                String[] genres;
-                try {
-                    genres = Queries.getGenresInfo();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                String[] event_types;
-                try {
-                    event_types = Queries.getEventTypesInfo();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-
-
-                for (String title : titles) {
-                    JPanel panel = new JPanel();
-                    JLabel title_label = new JLabel(title, JLabel.TRAILING);
-                    title_label.setPreferredSize(new Dimension(200, 50));
-                    title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
-                    Component input;
-                    if (title.equals("Тип мероприятия")) {
-                        input = new JComboBox(event_types);
-                        input.setPreferredSize(new Dimension(332, 20));
-                        title_label.setLabelFor(input);
-                    } else if (title.equals("Жанр")) {
-                        input = new JComboBox(genres);
-                        input.setPreferredSize(new Dimension(332, 20));
-                        title_label.setLabelFor(input);
-                    } else if (title.equals("Описание") || title.equals("Программа")) {
-                        JTextArea text_area = new JTextArea(5, 30);
-                        text_area.setLineWrap(true);
-                        text_area.setWrapStyleWord(true);
-                        input = new JScrollPane(text_area);
-                        ((JScrollPane) input).setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                        input.setPreferredSize(new Dimension(332, 87));
-                        title_label.setLabelFor(input);
-                    } else if (title.equals("Дата и время")) {
-                        input = new JTextField(30);
-                        title_label.setLabelFor(input);
-                    } else {
-                        input = new JTextField(30);
-                        title_label.setLabelFor(input);
-                    }
-                    panel.add(title_label);
-                    panel.add(input);
-                    main_panel.add(panel);
-                }
-
-
-                //кнопка добавления нового мероприятия
-                JButton addButton = new JButton("Добавить мероприятие");
-                addButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        events.add(new Event("", "", "", "", 0, 0, "", ""));
-                        eventTableModel.fireTableDataChanged();
-                        frame_add_event.dispose();
-                        frame.setVisible(true);
-                    }
-                });
-
-                //кнопка отмены добавления нового мероприятия
-                JButton cancelButton = new JButton("Отменить");
-                cancelButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        frame_add_event.dispose();
-                        frame.setVisible(true);
-                    }
-                });
-                frame_add_event.add(main_panel, BorderLayout.CENTER);
-                JPanel btn_panel = new JPanel();
-                btn_panel.add(addButton);
-                btn_panel.add(cancelButton);
-                frame_add_event.add(btn_panel, BorderLayout.SOUTH);
-                frame_add_event.setVisible(true);
+                new EventAddForm(frame, events, eventTableModel);
             }
         });
 
@@ -187,13 +81,12 @@ public class Gui {
                     UIManager.put("OptionPane.yesButtonText"   , "Да"    );
                     UIManager.put("OptionPane.noButtonText"    , "Нет"   );
                     int confirmation = JOptionPane.showConfirmDialog(
-                            null,
-                            title,
-                            "Подтверждение удаления",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.WARNING_MESSAGE
+                        null,
+                        title,
+                        "Подтверждение удаления",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
                     );
-                    System.out.println(confirmation);
                     if (confirmation == JOptionPane.YES_OPTION) {
                         events.removeAll(deleted_events);
                         eventTableModel.fireTableDataChanged();
