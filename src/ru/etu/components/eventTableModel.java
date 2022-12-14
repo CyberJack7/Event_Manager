@@ -37,6 +37,7 @@ public class eventTableModel extends AbstractTableModel {
             case 5: return "Жанр";
             case 6: return "Описание";
             case 7: return "Программа";
+
         }
         return null;
     }
@@ -55,19 +56,48 @@ public class eventTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Event event = events.get(rowIndex);
         switch (columnIndex){
-            case 0: return event.getEventName();
-            case 1: return event.getSubject();
-            case 2: return event.getDate();
-            case 3: return event.getPlace();
-            case 4: return event.getEventType();
-            case 5: return event.getGenre();
-            case 6: return event.getDescription();
-            case 7: return event.getProgram();
+            case 0:
+                return event.getEventName();
+            case 1:
+                if (event.getSubject() == null) {
+                    return "-";
+                }
+                return event.getSubject();
+            case 2:
+                if (event.getDate() == null) {
+                    return "-";
+                }
+                return event.getDate();
+            case 3:
+                if (event.getPlace() == null) {
+                    return "-";
+                }
+                return event.getPlace();
+            case 4:
+                if (event.getEventType() == null) {
+                    return "-";
+                }
+                return event.getEventType();
+            case 5:
+                if (event.getGenre() == null) {
+                    return "-";
+                }
+                return event.getGenre();
+            case 6:
+                if (event.getDescription() == null) {
+                    return "-";
+                }
+                return event.getDescription();
+            case 7:
+                if (event.getProgram() == null) {
+                    return "-";
+                }
+                return event.getProgram();
         }
         return null;
     }
 
-    @Override
+    /*@Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Event event = events.get(rowIndex);
         switch (columnIndex){
@@ -96,5 +126,5 @@ public class eventTableModel extends AbstractTableModel {
                 event.setProgram((String) aValue);
                 break;
         }
-    }
+    }*/
 }

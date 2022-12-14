@@ -116,4 +116,38 @@ public class Queries {
         conn.close();
         return genre_id;
     }
+
+    //получение названия типа мероприятия по id
+    public static String getEventTypeName(Integer event_type_id) throws SQLException {
+        Connection conn = JdbcRunner.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet event_name_query = stmt.executeQuery( "SELECT type_name FROM public.event_type " +
+                "WHERE event_type_id = '" + event_type_id + "'");
+
+        String event_type_name = null;
+        while (event_name_query.next()) {
+            event_type_name = event_name_query.getString("type_name");
+        }
+        event_name_query.close();
+        stmt.close();
+        conn.close();
+        return event_type_name;
+    }
+
+    //получение названия жанра по id
+    public static String getGenreName(Integer genre_id) throws SQLException {
+        Connection conn = JdbcRunner.getConn();
+        Statement stmt = conn.createStatement();
+        ResultSet genre_name_query = stmt.executeQuery( "SELECT genre_name FROM public.genre " +
+                "WHERE genre_id = '" + genre_id + "'");
+
+        String genre_name = null;
+        while (genre_name_query.next()) {
+            genre_name = genre_name_query.getString("genre_name");
+        }
+        genre_name_query.close();
+        stmt.close();
+        conn.close();
+        return genre_name;
+    }
 }

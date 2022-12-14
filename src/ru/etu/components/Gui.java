@@ -29,14 +29,13 @@ import java.sql.ResultSet;
 public class Gui {
     public static void main(String[] args) throws SQLException {
         JFrame frame = new JFrame("Мероприятия");
-        //frame.setTitle("Новое окно!!!");
         frame.setSize(1200, 800);
+        frame.setMinimumSize(new Dimension(1000, 700));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         table(frame);
-
-//        initContent(frame);
         frame.setVisible(true);
     }
 
@@ -66,6 +65,7 @@ public class Gui {
         delButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(events);
                 int[] selectedIndices = table.getSelectionModel().getSelectedIndices();
                 if (selectedIndices.length != 0) {
                     ArrayList<Event> deleted_events = new ArrayList<>();
@@ -88,6 +88,11 @@ public class Gui {
                         JOptionPane.WARNING_MESSAGE
                     );
                     if (confirmation == JOptionPane.YES_OPTION) {
+                        try {
+                            Event.deleteEventFromDB(deleted_events);
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
                         events.removeAll(deleted_events);
                         eventTableModel.fireTableDataChanged();
                     }

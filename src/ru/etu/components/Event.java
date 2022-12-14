@@ -1,6 +1,7 @@
 package ru.etu.components;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Event {
@@ -18,8 +19,7 @@ public class Event {
     public Event(int event_id) throws SQLException {
         Connection conn = JdbcRunner.getConn();
         Statement stmt = conn.createStatement();
-        ResultSet event_query = stmt.executeQuery( "SELECT * FROM public.event " +
-                "JOIN public.event_type USING(event_type_id) JOIN public.genre USING(genre_id) WHERE event_id = " + event_id);
+        ResultSet event_query = stmt.executeQuery( "SELECT * FROM public.event WHERE event_id = " + event_id);
 
         //id = name = subject = date = place = event_type_id = genre_id = description = program = null;
         while (event_query.next()) {
@@ -29,8 +29,8 @@ public class Event {
             this.subject = event_query.getString("subject");
             this.date = event_query.getString("date");
             this.place = event_query.getString("place");
-            this.eventType = event_query.getString("type_name");
-            this.genre = event_query.getString("genre_name");
+            this.eventType = Queries.getEventTypeName(event_query.getInt("event_type_id"));
+            this.genre = Queries.getGenreName(event_query.getInt("genre_id"));
             this.description = event_query.getString("description");
             this.program = event_query.getString("program");
         }
@@ -48,27 +48,12 @@ public class Event {
         this.genre = genre;
         this.description = description;
         this.program = program;
-        /*Connection conn = JdbcRunner.getConn();
-        Statement stmt = conn.createStatement();
-        ResultSet event_type_id_query = stmt.executeQuery( "SELECT event_type_id FROM public.event_type WHERE type_name = '" + eventType + "'");
-        while (event_type_id_query.next()) {
-            this.eventTypeId = event_type_id_query.getInt("event_type_id");
-        }
-        event_type_id_query.close();
-
-        ResultSet genre_id_query = stmt.executeQuery( "SELECT genre_id FROM public.genre WHERE genre_name = '" + genre + "'");
-        while (genre_id_query.next()) {
-            this.genreId = genre_id_query.getInt("genre_id");
-        }
-        genre_id_query.close();
-        stmt.close();
-        conn.close();*/
     }
 
-    public static void addEventInDB(Event event) throws SQLException {
+    public static int addEventInDB(Event event) throws SQLException {
         Connection conn = JdbcRunner.getConn();
-        Statement stmt = conn.createStatement();
-        String sql = "INSERT INTO event (event_name,subject,date,place,event_type_id,genre_id,description,program) "
+        //Statement stmt = conn.createStatement();
+        String sql = "INSERT INTO public.event (event_name,subject,date,place,event_type_id,genre_id,description,program) "
                 + "VALUES (?,?,?,?,?,?,?,?);";
         PreparedStatement pstmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, event.getEventName());
@@ -108,6 +93,26 @@ public class Event {
             pstmt.setNull(8, java.sql.Types.NULL);
         }
         pstmt.executeUpdate();
+        ResultSet keys_query = pstmt.getGeneratedKeys();
+        int event_id = 0;
+        while (keys_query.next()) {
+            event_id = keys_query.getInt("event_id");
+        }
+        pstmt.close();
+        conn.close();
+        return event_id;
+    }
+
+    public static void deleteEventFromDB(ArrayList<Event> deletedEvents) throws SQLException {
+        for (Event event : deletedEvents) {
+            int event_id = event.getEventId();
+            Connection conn = JdbcRunner.getConn();
+            Statement stmt = conn.createStatement();
+            String sql = "DELETE FROM public.event WHERE event_id = " + event_id;
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+        }
     }
 
     public int getEventId() {
@@ -151,6 +156,9 @@ public class Event {
     }
 
     public String getEventType() {
+        /*if (eventType == null) {
+            return eventType = "-";
+        }*/
         return eventType;
     }
 
@@ -159,6 +167,9 @@ public class Event {
     }
 
     public String getGenre() {
+        /*if (genre == null) {
+            return genre = "-";
+        }*/
         return genre;
     }
 

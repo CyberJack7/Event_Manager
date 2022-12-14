@@ -6,12 +6,14 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.model.UtilDateModel;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -36,7 +38,7 @@ public class EventAddForm {
     private final String[] titles = {
             "Название мероприятия*",
             "Тематика",
-            "Дата и время",
+            "Дата",
             "Место проведения",
             "Тип мероприятия",
             "Жанр",
@@ -77,7 +79,7 @@ public class EventAddForm {
             switch (title) {
                 case "Название мероприятия*" -> component = eventName = new JTextField(30);
                 case "Тематика" -> component = subject = new JTextField(30);
-                case "Дата и время" -> component = date = getCalendar();
+                case "Дата" -> component = date = getCalendar();
                 case "Место проведения" -> component = place = new JTextField(30);
                 case "Тип мероприятия" -> component = eventTypes = getEventTypes();
                 case "Жанр" -> component = genres = getGenres();
@@ -101,19 +103,27 @@ public class EventAddForm {
                         "Предупреждение",
                         JOptionPane.ERROR_MESSAGE);
                 } else {
+                    String add_date;
+                    if (date.getModel().getValue() == null) {
+                        add_date = "";
+                    } else {
+                        add_date = date.getModel().getYear() + "-" + (date.getModel().getMonth() + 1) + "-" + date.getModel().getDay();
+                    }
                     try {
                         Event event = new Event(
                             eventName.getText(),
                             subject.getText(),
-                            date.getModel().getYear() + "-" + (date.getModel().getMonth() + 1) + "-" + date.getModel().getDay(),
+                            add_date,
                             place.getText(),
                             (String) eventTypes.getSelectedItem(),
                             (String) genres.getSelectedItem(),
                             description.getText(),
                             program.getText()
                         );
+                        int event_id = Event.addEventInDB(event);
+                        System.out.println(event_id);
+                        event.setEventId(event_id);
                         events.add(event);
-                        Event.addEventInDB(event);
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
