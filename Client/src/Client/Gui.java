@@ -10,6 +10,9 @@ import java.net.MalformedURLException;
 import java.sql.*;
 import java.util.*;
 
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 public class Gui {
     public static void main(String[] args) throws SQLException, MalformedURLException {
         JFrame frame = new JFrame("Мероприятия");
@@ -17,7 +20,7 @@ public class Gui {
         frame.setMinimumSize(new Dimension(1000, 700));
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.addTab("Расписание", table(frame));
@@ -28,7 +31,8 @@ public class Gui {
 
     private static JPanel table(JFrame frame) throws SQLException, MalformedURLException {
         JPanel table_panel = new JPanel();
-        table_panel.setLayout(new BoxLayout(table_panel, BoxLayout.Y_AXIS));
+        table_panel.setLayout(new BorderLayout());
+        //table_panel.setLayout(new BoxLayout(table_panel, BoxLayout.Y_AXIS));
 
         //создание и заполнение таблицы с мероприятиями
         ArrayList<Integer> arEventsId = ClientService.getInstance().getService().getEventsId();
@@ -38,15 +42,13 @@ public class Gui {
         }
         eventTableModel eventTableModel = new eventTableModel(events);
         JTable table = new JTable(eventTableModel);
-        table_panel.add(new JScrollPane(table));
+        table_panel.add(new JScrollPane(table), BorderLayout.CENTER);
 
         //кнопка открытия окна добавления нового мероприятия
         JButton addButton = new JButton("Создать мероприятие");
         addButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new EventAddForm(frame, events, eventTableModel);
-            }
+            public void actionPerformed(ActionEvent e) { new EventAddForm(frame, events, eventTableModel); }
         });
 
         //кнопка удаления мероприятий
@@ -67,8 +69,8 @@ public class Gui {
                     } else {
                         title = "Вы уверены, что хотите удалить мероприятий: " + selectedIndices.length + " шт?";
                     }
-                    UIManager.put("OptionPane.yesButtonText"   , "Удалить"    );
-                    UIManager.put("OptionPane.noButtonText"    , "Отменить"   );
+                    UIManager.put("OptionPane.yesButtonText", "Удалить");
+                    UIManager.put("OptionPane.noButtonText", "Отменить");
                     int confirmation = JOptionPane.showConfirmDialog(
                         null,
                         title,
@@ -95,9 +97,11 @@ public class Gui {
         });
 
         JPanel btn_panel = new JPanel();
+        addButton.setPreferredSize(new Dimension(200, 40));
+        delButton.setPreferredSize(new Dimension(200, 40));
         btn_panel.add(addButton);
         btn_panel.add(delButton);
-        table_panel.add(btn_panel);
+        table_panel.add(btn_panel, BorderLayout.SOUTH);
         return table_panel;
     }
 

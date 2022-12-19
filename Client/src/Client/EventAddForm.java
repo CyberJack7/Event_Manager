@@ -15,6 +15,9 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
+
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class EventAddForm {
 
@@ -46,23 +49,10 @@ public class EventAddForm {
 
     //окно добавления нового мероприятия
     public EventAddForm(JFrame frame, ArrayList<Data.Event> events, eventTableModel eventTableModel){
-        JFrame frame_add_event = new JFrame("Новое мероприятие");
-        frame_add_event.setSize(600, 600);
-        frame_add_event.setLocationRelativeTo(null);
-        frame_add_event.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-            super.windowClosing(e);
-            frame_add_event.dispose();
-            frame.setVisible(true);
-            }
-            /*@Override
-            public void windowOpened(WindowEvent e) {
-                super.windowOpened(e);
-                JOptionPane.showMessageDialog(null, "Welcome to the System");
-            }*/
-        });
-        frame.dispose();
+        JDialog add_event_frame = new JDialog(frame, "Новое мероприятие", true);
+        add_event_frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        add_event_frame.setSize(600, 600);
+        add_event_frame.setLocationRelativeTo(null);
 
         JPanel main_panel = new JPanel();
         main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
@@ -92,7 +82,7 @@ public class EventAddForm {
 
         //кнопка добавления нового мероприятия
         addButton = new JButton("Добавить мероприятие");
-        /*addButton.addActionListener(new ActionListener() {
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (Objects.equals(eventName.getText(), "")) {
@@ -108,7 +98,7 @@ public class EventAddForm {
                         add_date = date.getModel().getYear() + "-" + (date.getModel().getMonth() + 1) + "-" + date.getModel().getDay();
                     }
                     try {
-                        java.awt.Event event = new java.awt.Event(
+                        Data.Event event = new Data.Event(
                             eventName.getText(),
                             subject.getText(),
                             add_date,
@@ -122,31 +112,25 @@ public class EventAddForm {
                         System.out.println(event_id);
                         event.setEventId(event_id);
                         events.add(event);
-                    } catch (SQLException ex) {
+                    } catch (SQLException | MalformedURLException ex) {
                         throw new RuntimeException(ex);
                     }
                     eventTableModel.fireTableDataChanged();
-                    frame_add_event.dispose();
-                    frame.setVisible(true);
+                    add_event_frame.dispose();
                 }
             }
-        });*/
+        });
 
         //кнопка отмены добавления нового мероприятия
         cancelButton = new JButton("Отменить");
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame_add_event.dispose();
-                frame.setVisible(true);
-            }
-        });
-        frame_add_event.add(main_panel, BorderLayout.CENTER);
+        cancelButton.addActionListener(e -> add_event_frame.dispose());
+
+        add_event_frame.add(main_panel, BorderLayout.CENTER);
         JPanel btn_panel = new JPanel();
         btn_panel.add(addButton);
         btn_panel.add(cancelButton);
-        frame_add_event.add(btn_panel, BorderLayout.SOUTH);
-        frame_add_event.setVisible(true);
+        add_event_frame.add(btn_panel, BorderLayout.SOUTH);
+        add_event_frame.setVisible(true);
     }
 
     public JButton getAddButton() {
@@ -198,10 +182,6 @@ public class EventAddForm {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         return textArea;
-        /*JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(332, 87));
-        return scrollPane;*/
     }
 
     private JScrollPane getScrollPane(JTextArea textArea){
