@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class DBManager {
@@ -73,9 +74,5 @@ public class DBManager {
 
     public Connection getConn(){
         return conn;
-    }
-
-    public static void main(String[] args) {
-        new DBManager();
     }
 }

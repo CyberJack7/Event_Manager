@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="API" />
     <orderEntry type="library" name="hessian-4.0.60" level="project" />
+    <orderEntry type="library" name="base-gui-1.0.0" level="project" />
   </component>
 </module>

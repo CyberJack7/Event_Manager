@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class Queries {
 
@@ -23,13 +24,12 @@ public class Queries {
         }
         event_id_query.close();
         stmt.close();
-        conn.close();
 
         return arEventsId;
     }
 
     //получение списка жанров
-    public static String[] getGenresInfo() throws SQLException {
+    public static String[] getGenres() throws SQLException {
         ArrayList<String> arGenres = new ArrayList<>();
 
         Connection conn = DBManager.getInstance().getConn();
@@ -42,7 +42,6 @@ public class Queries {
         }
         genres_query.close();
         stmt.close();
-        conn.close();
         int amount_genres = arGenres.size();
         String[] genres = new String[amount_genres + 1];
         genres[0] = "Не выбрано";
@@ -56,7 +55,7 @@ public class Queries {
     }
 
     //получение списка типов мероприятий
-    public static String[] getEventTypesInfo() throws SQLException {
+    public static String[] getEventTypes() throws SQLException {
         ArrayList<String> arEventTypes = new ArrayList<>();
 
         Connection conn = DBManager.getInstance().getConn();
@@ -69,7 +68,6 @@ public class Queries {
         }
         event_type_query.close();
         stmt.close();
-        conn.close();
         int amount_types = arEventTypes.size();
         String[] event_types = new String[amount_types + 1];
         event_types[0] = "Не выбрано";
@@ -95,7 +93,6 @@ public class Queries {
         }
         event_id_query.close();
         stmt.close();
-        conn.close();
         return event_id;
     }
 
@@ -112,7 +109,6 @@ public class Queries {
         }
         genre_id_query.close();
         stmt.close();
-        conn.close();
         return genre_id;
     }
 
@@ -129,7 +125,6 @@ public class Queries {
         }
         event_name_query.close();
         stmt.close();
-        conn.close();
         return event_type_name;
     }
 
@@ -146,7 +141,6 @@ public class Queries {
         }
         genre_name_query.close();
         stmt.close();
-        conn.close();
         return genre_name;
     }
 }
