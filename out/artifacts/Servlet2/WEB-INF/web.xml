@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app>
+<!--        <servlet>-->
+<!--            <servlet-name>Service</servlet-name>-->
+<!--            <servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>-->
+<!--            <init-param>-->
+<!--                <param-name>home-class</param-name>-->
+<!--                <param-value>Server.ServiceImpl</param-value>-->
+<!--            </init-param>-->
+<!--            <init-param>-->
+<!--                <param-name>home-api</param-name>-->
+<!--                <param-value>api.Services.Service</param-value>-->
+<!--            </init-param>-->
+<!--        </servlet>-->
+
+<!--        <servlet-mapping>-->
+<!--            <servlet-name>Service</servlet-name>-->
+<!--            <url-pattern>/Service</url-pattern>-->
+<!--        </servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>Service</servlet-name>
+        <servlet-name>Server.ServiceImpl</servlet-name>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Service</servlet-name>
+        <url-pattern>/Service</url-pattern>
+    </servlet-mapping>
+</web-app>
