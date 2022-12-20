@@ -17,4 +17,20 @@ public interface Service {
     String[] getGenres() throws SQLException;
 
     String[] getEventTypes() throws SQLException;
+
+    void updateEventName(String eventName, int eventId) throws SQLException;
+
+    void updateSubject(String subject, int eventId) throws SQLException;
+
+    void updateDate(String date, int eventId) throws SQLException;
+
+    void updatePlace(String place, int eventId) throws SQLException;
+
+    void updateEventType(String eventType, int eventId) throws SQLException;
+
+    void updateGenre(String genre, int eventId) throws SQLException;
+
+    void updateDescription(String description, int eventId) throws SQLException;
+
+    void updateProgram(String program, int eventId) throws SQLException;
 }

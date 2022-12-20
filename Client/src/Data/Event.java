@@ -67,6 +67,35 @@ public class Event {
         ClientService.getInstance().getService().deleteEventFromDB(deletedEventsId);
     }
 
+    public static void updateEventName(String eventName, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updateEventName(eventName, eventId);
+    }
+
+    public static void updateSubject(String subject, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updateSubject(subject, eventId);
+    }
+
+    public static void updateDate(String date, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updateDate(date, eventId);
+    }
+
+    public static void updatePlace(String place, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updatePlace(place, eventId);
+    }
+
+    public static void updateEventType(String eventType, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updateEventType(eventType, eventId);
+    }
+    public static void updateGenre(String genre, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updateGenre(genre, eventId);
+    }
+    public static void updateDescription(String description, int eventId) throws MalformedURLException, SQLException {
+        ClientService.getInstance().getService().updateDescription(description, eventId);
+    }
+    public static void updateProgram (String program, int eventId) throws SQLException, MalformedURLException {
+        ClientService.getInstance().getService().updateProgram(program, eventId);
+    }
+
     public int getEventId() {
         return eventId;
     }
@@ -108,9 +137,6 @@ public class Event {
     }
 
     public String getEventType() {
-        /*if (eventType == null) {
-            return eventType = "-";
-        }*/
         return eventType;
     }
 
@@ -119,9 +145,6 @@ public class Event {
     }
 
     public String getGenre() {
-        /*if (genre == null) {
-            return genre = "-";
-        }*/
         return genre;
     }
 

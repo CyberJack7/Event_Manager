@@ -28,15 +28,4 @@ public class ClientService {
     public Service getService() throws MalformedURLException {
         return service;
     }
-
-    public static void main(String[] args) throws MalformedURLException, SQLException {
-        String url = "http://localhost:8080/Service";
-
-        HessianProxyFactory factory = new HessianProxyFactory();
-        factory.setOverloadEnabled(true);
-        Service service_2 = (Service) factory.create(Service.class, url);
-
-        System.out.println(service_2.getEventsId());
-        System.out.println(service_2.getEventsId());
-    }
 }

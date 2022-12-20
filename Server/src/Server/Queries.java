@@ -85,7 +85,7 @@ public class Queries {
         Connection conn = DBManager.getInstance().getConn();
         Statement stmt = conn.createStatement();
         ResultSet event_id_query = stmt.executeQuery( "SELECT event_type_id FROM public.event_type " +
-                "WHERE type_name = '" + event_type_name + "'");
+                " WHERE type_name = '" + event_type_name + "'");
 
         Integer event_id = null;
         while (event_id_query.next()) {
@@ -101,7 +101,7 @@ public class Queries {
         Connection conn = DBManager.getInstance().getConn();
         Statement stmt = conn.createStatement();
         ResultSet genre_id_query = stmt.executeQuery( "SELECT genre_id FROM public.genre " +
-                "WHERE genre_name = '" + genre_name + "'");
+                " WHERE genre_name = '" + genre_name + "'");
 
         Integer genre_id = null;
         while (genre_id_query.next()) {

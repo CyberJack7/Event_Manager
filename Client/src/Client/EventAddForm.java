@@ -25,8 +25,8 @@ public class EventAddForm {
     private static JTextField subject;
     private static JTextField place;
 
-    private static JComboBox eventTypes;
-    private static JComboBox genres;
+    private static JComboBox<String> eventTypes;
+    private static JComboBox<String> genres;
 
     private static JTextArea description;
     private static JTextArea program;
@@ -51,17 +51,16 @@ public class EventAddForm {
     public EventAddForm(JFrame frame, ArrayList<Data.Event> events, eventTableModel eventTableModel){
         JDialog add_event_frame = new JDialog(frame, "Новое мероприятие", true);
         add_event_frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        add_event_frame.setSize(600, 600);
+        add_event_frame.setSize(700, 700);
         add_event_frame.setLocationRelativeTo(null);
 
         JPanel main_panel = new JPanel();
-        main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
+        //main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
 
-        ArrayList<Component> input = new ArrayList<>();
         for (String title : this.titles) {
             JPanel panel = new JPanel();
             JLabel title_label = new JLabel(title, JLabel.TRAILING);
-            title_label.setPreferredSize(new Dimension(150, 50));
+            title_label.setPreferredSize(new Dimension(200, 50));
             title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
             Component component = null;
             switch (title) {
@@ -109,7 +108,6 @@ public class EventAddForm {
                             program.getText()
                         );
                         int event_id = Data.Event.addEventInDB(event);
-                        System.out.println(event_id);
                         event.setEventId(event_id);
                         events.add(event);
                     } catch (SQLException | MalformedURLException ex) {
@@ -137,7 +135,7 @@ public class EventAddForm {
         return addButton;
     }
 
-    private JComboBox getGenres(){
+    private static JComboBox<String> getGenres(){
         String[] genres; //список доступных жанров
         try {
             genres = ClientService.getInstance().getService().getGenres();
@@ -145,24 +143,24 @@ public class EventAddForm {
                 MalformedURLException | SQLException ex) {
             throw new RuntimeException(ex);
         }
-        JComboBox genres_input = new JComboBox(genres);
+        JComboBox<String> genres_input = new JComboBox<String>(genres);
         genres_input.setPreferredSize(new Dimension(332, 20));
         return genres_input;
     }
 
-    private JComboBox getEventTypes(){
+    private static JComboBox<String> getEventTypes(){
         String[] event_types; //список доступных типов мероприятий
         try {
             event_types = ClientService.getInstance().getService().getEventTypes();
         } catch (MalformedURLException | SQLException ex) {
             throw new RuntimeException(ex);
         }
-        JComboBox event_types_input = new JComboBox(event_types);
+        JComboBox<String> event_types_input = new JComboBox<String>(event_types);
         event_types_input.setPreferredSize(new Dimension(332, 20));
         return event_types_input;
     }
 
-    private JDatePickerImpl getCalendar(){
+    private static JDatePickerImpl getCalendar(){
         UtilDateModel uiModel  = null; // Модель даты
         JDatePanelImpl dtpPanel = null; // Панель даты
         DateLabelFormatter dlf = null; // Формат представления даты в компоненте
@@ -190,4 +188,14 @@ public class EventAddForm {
         scrollPane.setPreferredSize(new Dimension(332, 87));
         return scrollPane;
     }
+
+    public static JComboBox<String> getEventTypesInput(){
+        return getEventTypes();
+    }
+
+    public static JComboBox<String> getGenresInput(){
+        return getGenres();
+    }
+
+    public static JDatePickerImpl getCalendarInput() { return getCalendar(); }
 }

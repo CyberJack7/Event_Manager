@@ -3,6 +3,7 @@ package Client;
 import Data.Event;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ public class Gui {
 
         JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.addTab("Расписание", table(frame));
+        jTabbedPane.addTab("Сотрудники", new JPanel());
 
         frame.add(jTabbedPane);
         frame.setVisible(true);
@@ -42,6 +44,8 @@ public class Gui {
         }
         eventTableModel eventTableModel = new eventTableModel(events);
         JTable table = new JTable(eventTableModel);
+        eventCellEditor.setTableCellEditor(table, frame);
+
         table_panel.add(new JScrollPane(table), BorderLayout.CENTER);
 
         //кнопка открытия окна добавления нового мероприятия
@@ -56,7 +60,6 @@ public class Gui {
         delButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(events);
                 int[] selectedIndices = table.getSelectionModel().getSelectedIndices();
                 if (selectedIndices.length != 0) {
                     ArrayList<Event> deleted_events = new ArrayList<>();

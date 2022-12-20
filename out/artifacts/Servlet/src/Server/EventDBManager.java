@@ -90,4 +90,104 @@ public class EventDBManager {
             stmt.close();
         }
     }
+
+    public static void updateEventName(String eventName, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql = "UPDATE public.event SET event_name = '" + eventName + "' WHERE event_id = " + eventId;
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updateSubject(String subject, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(subject, "")) {
+            sql = "UPDATE public.event SET subject = '" + subject + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET subject = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updateDate(String date, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(date, "")) {
+            sql = "UPDATE public.event SET date = '" + date + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET date = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updatePlace(String place, int eventId) throws SQLException {
+        System.out.println(place);
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(place, "")) {
+            sql = "UPDATE public.event SET place = '" + place + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET place = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updateEventType(String eventType, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(eventType, "Не выбрано")) {
+            sql = "UPDATE public.event SET event_type_id = '" + Queries.getEventTypeId(eventType) + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET event_type_id = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updateGenre(String genre, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(genre, "Не выбрано")) {
+            sql = "UPDATE public.event SET genre_id = '" + Queries.getGenreId(genre) + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET genre_id = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updateDescription(String description, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(description, "")) {
+            sql = "UPDATE public.event SET description = '" + description + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET description = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
+
+    public static void updateProgram(String program, int eventId) throws SQLException {
+        Connection conn = DBManager.getInstance().getConn();
+        Statement stmt = conn.createStatement();
+        String sql;
+        if (!Objects.equals(program, "")) {
+            sql = "UPDATE public.event SET program = '" + program + "' WHERE event_id = " + eventId;
+        } else {
+            sql = "UPDATE public.event SET program = NULL WHERE event_id = " + eventId;
+        }
+        stmt.executeUpdate(sql);
+        stmt.close();
+    }
 }
