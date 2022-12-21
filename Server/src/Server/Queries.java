@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 
 public class Queries {
 
@@ -50,7 +49,6 @@ public class Queries {
             genres[i] = genre;
             i++;
         }
-
         return genres;
     }
 
@@ -76,7 +74,6 @@ public class Queries {
             event_types[i] = event_type;
             i++;
         }
-
         return event_types;
     }
 

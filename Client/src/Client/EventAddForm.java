@@ -7,10 +7,6 @@ import org.jdatepicker.model.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -81,41 +77,38 @@ public class EventAddForm {
 
         //кнопка добавления нового мероприятия
         addButton = new JButton("Добавить мероприятие");
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (Objects.equals(eventName.getText(), "")) {
-                    JOptionPane.showMessageDialog(null,
-                        "Нельзя создать мероприятие без названия!",
-                        "Предупреждение",
-                        JOptionPane.ERROR_MESSAGE);
+        addButton.addActionListener(e -> {
+            if (Objects.equals(eventName.getText(), "")) {
+                JOptionPane.showMessageDialog(null,
+                    "Нельзя создать мероприятие без названия!",
+                    "Предупреждение",
+                    JOptionPane.ERROR_MESSAGE);
+            } else {
+                String add_date;
+                if (date.getModel().getValue() == null) {
+                    add_date = "";
                 } else {
-                    String add_date;
-                    if (date.getModel().getValue() == null) {
-                        add_date = "";
-                    } else {
-                        add_date = date.getModel().getYear() + "-" + (date.getModel().getMonth() + 1) + "-" + date.getModel().getDay();
-                    }
-                    try {
-                        Data.Event event = new Data.Event(
-                            eventName.getText(),
-                            subject.getText(),
-                            add_date,
-                            place.getText(),
-                            (String) eventTypes.getSelectedItem(),
-                            (String) genres.getSelectedItem(),
-                            description.getText(),
-                            program.getText()
-                        );
-                        int event_id = Data.Event.addEventInDB(event);
-                        event.setEventId(event_id);
-                        events.add(event);
-                    } catch (SQLException | MalformedURLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    eventTableModel.fireTableDataChanged();
-                    add_event_frame.dispose();
+                    add_date = date.getModel().getYear() + "-" + (date.getModel().getMonth() + 1) + "-" + date.getModel().getDay();
                 }
+                try {
+                    Data.Event event = new Data.Event(
+                        eventName.getText(),
+                        subject.getText(),
+                        add_date,
+                        place.getText(),
+                        (String) eventTypes.getSelectedItem(),
+                        (String) genres.getSelectedItem(),
+                        description.getText(),
+                        program.getText()
+                    );
+                    int event_id = Data.Event.addEventInDB(event);
+                    event.setEventId(event_id);
+                    events.add(event);
+                } catch (SQLException | MalformedURLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                eventTableModel.fireTableDataChanged();
+                add_event_frame.dispose();
             }
         });
 
@@ -143,7 +136,7 @@ public class EventAddForm {
                 MalformedURLException | SQLException ex) {
             throw new RuntimeException(ex);
         }
-        JComboBox<String> genres_input = new JComboBox<String>(genres);
+        JComboBox<String> genres_input = new JComboBox<>(genres);
         genres_input.setPreferredSize(new Dimension(332, 20));
         return genres_input;
     }
@@ -155,15 +148,15 @@ public class EventAddForm {
         } catch (MalformedURLException | SQLException ex) {
             throw new RuntimeException(ex);
         }
-        JComboBox<String> event_types_input = new JComboBox<String>(event_types);
+        JComboBox<String> event_types_input = new JComboBox<>(event_types);
         event_types_input.setPreferredSize(new Dimension(332, 20));
         return event_types_input;
     }
 
     private static JDatePickerImpl getCalendar(){
-        UtilDateModel uiModel  = null; // Модель даты
-        JDatePanelImpl dtpPanel = null; // Панель даты
-        DateLabelFormatter dlf = null; // Формат представления даты в компоненте
+        UtilDateModel uiModel; // Модель даты
+        JDatePanelImpl dtpPanel; // Панель даты
+        DateLabelFormatter dlf; // Формат представления даты в компоненте
         Locale locale = new Locale("rus"); //локализация
 
         // Создание компонента даты

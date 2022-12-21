@@ -8,7 +8,7 @@ import java.util.Objects;
 public class EventDBManager {
     //получение информации о мероприятии по id
     public static HashMap<String,String> getEventById(int event_id) throws SQLException {
-        HashMap<String,String> event = new HashMap<String,String>();
+        HashMap<String,String> event = new HashMap<>();
         Connection conn = DBManager.getInstance().getConn();
         Statement stmt = conn.createStatement();
         ResultSet event_query = stmt.executeQuery( "SELECT * FROM public.event WHERE event_id = " + event_id);

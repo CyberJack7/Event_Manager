@@ -4,8 +4,6 @@ import api.Services.Service;
 import com.caucho.hessian.client.HessianProxyFactory;
 
 import java.net.MalformedURLException;
-import java.sql.SQLException;
-import java.util.Arrays;
 
 public class ClientService {
     private static ClientService clientService;
