@@ -21,7 +21,6 @@ public class Gui {
 
         JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.addTab("Расписание", table(frame));
-        jTabbedPane.addTab("Сотрудники", new JPanel());
 
         frame.add(jTabbedPane);
         frame.setVisible(true);
