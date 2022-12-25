@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Servlet" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="20609c02-463b-4b37-b071-769e1afdbedc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/API/src/Data/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/Data/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Client/Gui.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Client/Gui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Client/employeeAddForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Client/employeeAddForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Client/employeeCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Client/employeeCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Client/eventAddForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Client/eventAddForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Client/eventCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Client/eventCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Client/postAddForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Client/postAddForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/Server/EventDBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/Server/EventDBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/Server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/Server/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/Server/ServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/Server/Servlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/EventAddForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/EventAddForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/EventAddForm$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/EventAddForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/Gui$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/Gui$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/Gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/JdbcRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/Queries.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Data/eventTableModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/classes/api/Services/Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/lib/hessian-4.0.60.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/lib/postgresql-42.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/src/Server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/src/Server/ServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Server_war_exploded/src/Server/Servlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/Server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Data/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Data/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Data/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/DBConf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/DBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/EmployeeDBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/EventDBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/PostDBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/Queries.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/Server/ServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/classes/api/Services/Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/activation-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/cglib-nodep-2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/dom4j-1.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/hessian-4.0.60.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/jdom-1.1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/jettison-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/joda-time-1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/kxml2-min-2.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/mxparser-1.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/postgresql-42.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/stax-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/stax-api-1.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/wstx-asl-3.2.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/xmlpull-1.1.3.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/xom-1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/xpp3_min-1.1.4c.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/lib/xstream-1.4.19.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/DBConf.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/DBManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/EmployeeDBManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/EventDBManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/PostDBManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/Queries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet/src/Server/ServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/Server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/Server/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/Server/ServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/Server/Servlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/EventAddForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/EventAddForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/EventAddForm$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/EventAddForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/Gui$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/Gui$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/Gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/JdbcRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/Queries.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Data/eventTableModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/classes/api/Services/Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/lib/hessian-4.0.60.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/lib/postgresql-42.5.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/src/Server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/src/Server/ServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Servlet2/src/Server/Servlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/API/Data/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/API/Data/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/API/Data/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/API/api/Services/Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/ClientService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/EventAddForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/Gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/calendarPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/cellRender$CellRender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/cellRender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/dateCellEditor$getDateCellEditor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/dateCellEditor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/employeeAddForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/employeeCell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/employeeTableModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/eventCell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/eventTableModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/postAddForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/Client/postTableModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/DBConf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/DBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/EmployeeDBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/EventDBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/PostDBManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/Queries.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/ServiceImpl.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IrmCdGSPL7SZi6csUU4gnCEqkm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "E:/KSK",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.21034482",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\OOP_Project\Client\src\Client" />
+      <recent name="E:\Jack\University\Семестр 5\МиСООП\OOP_Project\lib" />
+      <recent name="E:\Jack\University\Семестр 5\МиСООП\OOP_Project\Server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Client.Gui">
+    <configuration name="Client.Gui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Client.Gui" />
+      <module name="Client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api.Services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.70" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Servlet">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="4e2bf09d-fb39-4a49-9779-30e579026750" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="1543" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Servlet" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Client.Gui" />
+      <item itemvalue="Tomcat Server.Tomcat" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Client.Gui" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="20609c02-463b-4b37-b071-769e1afdbedc" name="Changes" comment="" />
+      <created>1670947949979</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670947949979</updated>
+      <workItem from="1670947951261" duration="21415000" />
+      <workItem from="1671051495447" duration="6158000" />
+      <workItem from="1671282544956" duration="16620000" />
+      <workItem from="1671361472932" duration="3690000" />
+      <workItem from="1671365255727" duration="2473000" />
+      <workItem from="1671367766431" duration="8990000" />
+      <workItem from="1671401272879" duration="4714000" />
+      <workItem from="1671444266903" duration="12477000" />
+      <workItem from="1671483294420" duration="2955000" />
+      <workItem from="1671536876327" duration="5247000" />
+      <workItem from="1671565546025" duration="12047000" />
+      <workItem from="1671614147692" duration="118000" />
+      <workItem from="1671617188770" duration="6400000" />
+      <workItem from="1671660885160" duration="616000" />
+      <workItem from="1671739603353" duration="458000" />
+      <workItem from="1671740912100" duration="2150000" />
+      <workItem from="1671875713653" duration="5368000" />
+      <workItem from="1671967512992" duration="16888000" />
+      <workItem from="1671990190005" duration="10768000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
