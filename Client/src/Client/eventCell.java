@@ -11,18 +11,9 @@ public class eventCell {
         // Определение минимального и максимального размеров столбцов
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
             switch (i) {
-                case 0, 1, 3, 6, 7 -> {
-                    columnModel.getColumn(i).setMinWidth(70);
-                    columnModel.getColumn(i).setMaxWidth(200);
-                }
-                case 4 -> {
-                    columnModel.getColumn(i).setMinWidth(120);
-                    columnModel.getColumn(i).setMaxWidth(120);
-                }
-                case 2, 5 -> {
-                    columnModel.getColumn(i).setMinWidth(85);
-                    columnModel.getColumn(i).setMaxWidth(85);
-                }
+                case 0, 1, 3, 6, 7 -> columnModel.getColumn(i).setMinWidth(70);
+                case 4 -> columnModel.getColumn(i).setMinWidth(120);
+                case 2, 5 -> columnModel.getColumn(i).setMinWidth(85);
             }
         }
         table.setRowHeight(table.getRowHeight() + 20);

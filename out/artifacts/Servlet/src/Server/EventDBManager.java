@@ -128,7 +128,6 @@ public class EventDBManager {
     }
 
     public static void updatePlace(String place, int eventId) throws SQLException {
-        System.out.println(place);
         Connection conn = DBManager.getInstance().getConn();
         Statement stmt = conn.createStatement();
         String sql;

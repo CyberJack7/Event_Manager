@@ -1,18 +1,14 @@
 package Client;
 
 import Data.Employee;
-import Data.Event;
-import org.jdatepicker.DateLabelFormatter;
-import org.jdatepicker.impl.JDatePanelImpl;
+
 import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.model.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -26,19 +22,6 @@ public class employeeAddForm {
     private static JDatePickerImpl dateBirth;
     private static JDatePickerImpl employmentDate;
     private static JComboBox<String> post;
-    private static JButton addButton;
-    private static JButton cancelButton;
-
-    private final String[] titles = {
-            "Фамилия* (до 50 симв.)",
-            "Имя* (до 50 симв.)",
-            "Отчество (до 50 симв.)",
-            "Электронная почта* (до 256 симв.)",
-            "Номер телефона* (12 симв. начиная с +)",
-            "Дата рождения*",
-            "Дата приёма на работу*",
-            "Должность*"
-    };
 
     //окно добавления нового мероприятия
     public employeeAddForm(JFrame frame, ArrayList<Employee> employees, employeeTableModel employeeTableModel){
@@ -49,7 +32,17 @@ public class employeeAddForm {
 
         JPanel main_panel = new JPanel();
 
-        for (String title : this.titles) {
+        String[] titles = {
+                "Фамилия* (до 50 симв.)",
+                "Имя* (до 50 симв.)",
+                "Отчество (до 50 симв.)",
+                "Электронная почта* (до 256 симв.)",
+                "Номер телефона* (12 симв. начиная с +)",
+                "Дата рождения*",
+                "Дата приёма на работу*",
+                "Должность*"
+        };
+        for (String title : titles) {
             JPanel panel = new JPanel();
             JLabel title_label = new JLabel(title, JLabel.TRAILING);
             title_label.setPreferredSize(new Dimension(300, 50));
@@ -72,7 +65,7 @@ public class employeeAddForm {
         }
 
         //кнопка добавления нового мероприятия
-        addButton = new JButton("Добавить сотрудника");
+        JButton addButton = new JButton("Добавить сотрудника");
         addButton.addActionListener(e -> {
             if (Objects.equals(name.getText(), "") | Objects.equals(surname.getText(), "") | Objects.equals(email.getText(), "") |
                     Objects.equals(phone.getText(), "") | dateBirth.getModel().getValue() == null | employmentDate.getModel().getValue() == null) {
@@ -113,7 +106,7 @@ public class employeeAddForm {
         });
 
         //кнопка отмены добавления нового мероприятия
-        cancelButton = new JButton("Отменить");
+        JButton cancelButton = new JButton("Отменить");
         cancelButton.addActionListener(e -> add_employee_frame.dispose());
 
         add_employee_frame.add(main_panel, BorderLayout.CENTER);
@@ -122,10 +115,6 @@ public class employeeAddForm {
         btn_panel.add(cancelButton);
         add_employee_frame.add(btn_panel, BorderLayout.SOUTH);
         add_employee_frame.setVisible(true);
-    }
-
-    public JButton getAddButton() {
-        return addButton;
     }
 
     private static JComboBox<String> getPosts(){

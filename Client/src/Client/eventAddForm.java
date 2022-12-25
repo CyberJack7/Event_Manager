@@ -2,17 +2,13 @@ package Client;
 
 import Data.Event;
 
-import org.jdatepicker.DateLabelFormatter;
-import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.model.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -31,20 +27,6 @@ public class eventAddForm {
 
     private static JDatePickerImpl date;
 
-    private static JButton addButton;
-    private static JButton cancelButton;
-
-    private final String[] titles = {
-            "Название мероприятия* (до 50 симв.)",
-            "Тематика (до 50 симв.)",
-            "Дата",
-            "Место проведения (до 200 симв.)",
-            "Тип мероприятия",
-            "Жанр",
-            "Описание (до 500 симв.)",
-            "Программа (до 500 симв.)"
-    };
-
     //окно добавления нового мероприятия
     public eventAddForm(JFrame frame, ArrayList<Data.Event> events, eventTableModel eventTableModel){
         JDialog add_event_frame = new JDialog(frame, "Новое мероприятие", true);
@@ -54,12 +36,22 @@ public class eventAddForm {
 
         JPanel main_panel = new JPanel();
 
-        for (String title : this.titles) {
+        String[] titles = {
+                "Название мероприятия* (до 50 симв.)",
+                "Тематика (до 50 симв.)",
+                "Дата",
+                "Место проведения (до 200 симв.)",
+                "Тип мероприятия",
+                "Жанр",
+                "Описание (до 500 симв.)",
+                "Программа (до 500 симв.)"
+        };
+        for (String title : titles) {
             JPanel panel = new JPanel();
             JLabel title_label = new JLabel(title, JLabel.TRAILING);
             title_label.setPreferredSize(new Dimension(250, 50));
             title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
-            Component component = null;
+            Component component;
             switch (title) {
                 case "Название мероприятия* (до 50 симв.)" -> component = eventName = new JTextField(30);
                 case "Тематика (до 50 симв.)" -> component = subject = new JTextField(30);
@@ -69,6 +61,7 @@ public class eventAddForm {
                 case "Жанр" -> component = genres = getGenres();
                 case "Описание (до 500 симв.)" -> component = getScrollPane(description = getTextArea());
                 case "Программа (до 500 симв.)" -> component = getScrollPane(program = getTextArea());
+                default -> component = null;
             }
             title_label.setLabelFor(component);
             panel.add(title_label);
@@ -77,7 +70,7 @@ public class eventAddForm {
         }
 
         //кнопка добавления нового мероприятия
-        addButton = new JButton("Добавить мероприятие");
+        JButton addButton = new JButton("Добавить мероприятие");
         addButton.addActionListener(e -> {
             if (Objects.equals(eventName.getText(), "")) {
                 JOptionPane.showMessageDialog(null,
@@ -121,7 +114,7 @@ public class eventAddForm {
         });
 
         //кнопка отмены добавления нового мероприятия
-        cancelButton = new JButton("Отменить");
+        JButton cancelButton = new JButton("Отменить");
         cancelButton.addActionListener(e -> add_event_frame.dispose());
 
         add_event_frame.add(main_panel, BorderLayout.CENTER);
@@ -130,10 +123,6 @@ public class eventAddForm {
         btn_panel.add(cancelButton);
         add_event_frame.add(btn_panel, BorderLayout.SOUTH);
         add_event_frame.setVisible(true);
-    }
-
-    public JButton getAddButton() {
-        return addButton;
     }
 
     private static JComboBox<String> getGenres(){

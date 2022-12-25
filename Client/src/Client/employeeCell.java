@@ -9,18 +9,11 @@ public class employeeCell {
         // Определение минимального и максимального размеров столбцов
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
             switch (i) {
-                case 5, 6, 8 -> {
-                    columnModel.getColumn(i).setMinWidth(85);
-                    columnModel.getColumn(i).setMaxWidth(85);
-                }
-                case 7 -> {
-                    columnModel.getColumn(i).setMinWidth(120);
-                    columnModel.getColumn(i).setMaxWidth(120);
-                }
-                default -> {
-                    columnModel.getColumn(i).setMinWidth(70);
-                    columnModel.getColumn(i).setMaxWidth(200);
-                }
+                case 4 -> columnModel.getColumn(i).setMinWidth(100);
+                case 5, 8 -> columnModel.getColumn(i).setMinWidth(110);
+                case 6 -> columnModel.getColumn(i).setMinWidth(150);
+                case 7 -> columnModel.getColumn(i).setMinWidth(120);
+                default -> columnModel.getColumn(i).setMinWidth(70);
             }
         }
         table.setRowHeight(table.getRowHeight() + 20);

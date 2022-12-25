@@ -14,7 +14,6 @@ public class Event implements Serializable{
     private String description;
     private String program;
 
-
     public Event(int event_id, HashMap<String, String> event) {
         this.eventId = event_id;
         this.eventName = event.get("name");

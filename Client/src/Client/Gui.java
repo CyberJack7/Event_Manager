@@ -32,7 +32,6 @@ public class Gui {
     private static JPanel eventTable(JFrame frame) throws SQLException, MalformedURLException {
         JPanel table_panel = new JPanel();
         table_panel.setLayout(new BorderLayout());
-        //table_panel.setLayout(new BoxLayout(table_panel, BoxLayout.Y_AXIS));
 
         //создание и заполнение таблицы с мероприятиями
         ArrayList<Integer> arEventsId = ClientService.getInstance().getService().getEventsId();

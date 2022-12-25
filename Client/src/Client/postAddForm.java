@@ -1,8 +1,6 @@
 package Client;
 
-import Data.Employee;
 import Data.Post;
-import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,24 +15,25 @@ public class postAddForm {
     private static JTextField name;
     private static JTextField wage;
 
-    private final String[] titles = {
-            "Название* (до 100 симв.)",
-            "Заработная плата*"
-    };
-
-    //окно добавления нового мероприятия
+    //окно добавления нового должности
     public postAddForm(JFrame frame, ArrayList<Post> posts, postTableModel postsTableModel){
         JDialog add_employee_frame = new JDialog(frame, "Новая должность", true);
         add_employee_frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        add_employee_frame.setSize(700, 700);
+        add_employee_frame.setSize(600, 200);
+        add_employee_frame.setMaximumSize(new Dimension(600, 200));
+        add_employee_frame.setMinimumSize(new Dimension(600, 200));
         add_employee_frame.setLocationRelativeTo(null);
 
         JPanel main_panel = new JPanel();
 
-        for (String title : this.titles) {
+        String[] titles = {
+                "Название* (до 100 симв.)",
+                "Заработная плата*"
+        };
+        for (String title : titles) {
             JPanel panel = new JPanel();
             JLabel title_label = new JLabel(title, JLabel.TRAILING);
-            title_label.setPreferredSize(new Dimension(300, 50));
+            title_label.setPreferredSize(new Dimension(200, 50));
             title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
             Component component = null;
             switch (title) {
@@ -88,7 +87,7 @@ public class postAddForm {
     }
     public static boolean isNumeric(String string){
         try {
-            int intValue = Integer.parseInt(string);
+            Integer.parseInt(string);
         } catch (NumberFormatException e) {
             return false;
         }
