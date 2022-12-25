@@ -1,5 +1,7 @@
 package Client;
 
+import Data.Event;
+
 import org.jdatepicker.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -15,7 +17,7 @@ import java.util.Objects;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-public class EventAddForm {
+public class eventAddForm {
 
     private static JTextField eventName;
     private static JTextField subject;
@@ -33,41 +35,40 @@ public class EventAddForm {
     private static JButton cancelButton;
 
     private final String[] titles = {
-            "Название мероприятия*",
-            "Тематика",
+            "Название мероприятия* (до 50 симв.)",
+            "Тематика (до 50 симв.)",
             "Дата",
-            "Место проведения",
+            "Место проведения (до 200 симв.)",
             "Тип мероприятия",
             "Жанр",
-            "Описание",
-            "Программа"
+            "Описание (до 500 симв.)",
+            "Программа (до 500 симв.)"
     };
 
     //окно добавления нового мероприятия
-    public EventAddForm(JFrame frame, ArrayList<Data.Event> events, eventTableModel eventTableModel){
+    public eventAddForm(JFrame frame, ArrayList<Data.Event> events, eventTableModel eventTableModel){
         JDialog add_event_frame = new JDialog(frame, "Новое мероприятие", true);
         add_event_frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         add_event_frame.setSize(700, 700);
         add_event_frame.setLocationRelativeTo(null);
 
         JPanel main_panel = new JPanel();
-        //main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.Y_AXIS));
 
         for (String title : this.titles) {
             JPanel panel = new JPanel();
             JLabel title_label = new JLabel(title, JLabel.TRAILING);
-            title_label.setPreferredSize(new Dimension(200, 50));
+            title_label.setPreferredSize(new Dimension(250, 50));
             title_label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
             Component component = null;
             switch (title) {
-                case "Название мероприятия*" -> component = eventName = new JTextField(30);
-                case "Тематика" -> component = subject = new JTextField(30);
-                case "Дата" -> component = date = getCalendar();
-                case "Место проведения" -> component = place = new JTextField(30);
+                case "Название мероприятия* (до 50 симв.)" -> component = eventName = new JTextField(30);
+                case "Тематика (до 50 симв.)" -> component = subject = new JTextField(30);
+                case "Дата" -> component = date = calendarPanel.getCalendar();
+                case "Место проведения (до 200 симв.)" -> component = place = new JTextField(30);
                 case "Тип мероприятия" -> component = eventTypes = getEventTypes();
                 case "Жанр" -> component = genres = getGenres();
-                case "Описание" -> component = getScrollPane(description = getTextArea());
-                case "Программа" -> component = getScrollPane(program = getTextArea());
+                case "Описание (до 500 симв.)" -> component = getScrollPane(description = getTextArea());
+                case "Программа (до 500 симв.)" -> component = getScrollPane(program = getTextArea());
             }
             title_label.setLabelFor(component);
             panel.add(title_label);
@@ -83,6 +84,13 @@ public class EventAddForm {
                     "Нельзя создать мероприятие без названия!",
                     "Предупреждение",
                     JOptionPane.ERROR_MESSAGE);
+            } else if(eventName.getText().length() > 50 | subject.getText().length() > 50 | place.getText().length() > 200 |
+                    description.getText().length() > 500 | program.getText().length() > 500) {
+                JOptionPane.showMessageDialog(null,
+                        "Введённое(ые) значение(я) не соответствуют требованиям.\nДопустимое" +
+                                " количество символов в поле и формат указаны в скобках рядом с ним",
+                        "Предупреждение",
+                        JOptionPane.ERROR_MESSAGE);
             } else {
                 String add_date;
                 if (date.getModel().getValue() == null) {
@@ -91,7 +99,7 @@ public class EventAddForm {
                     add_date = date.getModel().getYear() + "-" + (date.getModel().getMonth() + 1) + "-" + date.getModel().getDay();
                 }
                 try {
-                    Data.Event event = new Data.Event(
+                    Event event = new Event(
                         eventName.getText(),
                         subject.getText(),
                         add_date,
@@ -101,7 +109,7 @@ public class EventAddForm {
                         description.getText(),
                         program.getText()
                     );
-                    int event_id = Data.Event.addEventInDB(event);
+                    int event_id = ClientService.getInstance().getService().addEventInDB(event);
                     event.setEventId(event_id);
                     events.add(event);
                 } catch (SQLException | MalformedURLException ex) {
@@ -153,21 +161,6 @@ public class EventAddForm {
         return event_types_input;
     }
 
-    private static JDatePickerImpl getCalendar(){
-        UtilDateModel uiModel; // Модель даты
-        JDatePanelImpl dtpPanel; // Панель даты
-        DateLabelFormatter dlf; // Формат представления даты в компоненте
-        Locale locale = new Locale("rus"); //локализация
-
-        // Создание компонента даты
-        uiModel = new UtilDateModel();
-        dtpPanel = new JDatePanelImpl (uiModel, locale);
-        dlf = new DateLabelFormatter("yyyy-MM-dd");
-        JDatePickerImpl calendar = new JDatePickerImpl(dtpPanel, dlf);
-        calendar.setPreferredSize(new Dimension(332, 20));
-        return calendar;
-    }
-
     private JTextArea getTextArea(){
         JTextArea textArea = new JTextArea(5, 30);
         textArea.setLineWrap(true);
@@ -189,6 +182,4 @@ public class EventAddForm {
     public static JComboBox<String> getGenresInput(){
         return getGenres();
     }
-
-    public static JDatePickerImpl getCalendarInput() { return getCalendar(); }
 }

@@ -6,11 +6,9 @@ import com.thoughtworks.xstream.security.AnyTypePermission;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Properties;
 
 public class DBManager {
@@ -34,7 +32,7 @@ public class DBManager {
         File file = new File(configPath);
 
         DBConf dbConf;
-        XStream xStream = new XStream();;
+        XStream xStream = new XStream();
         xStream.alias("DBConf", DBConf.class);
         xStream.addPermission(AnyTypePermission.ANY); //снимаем ограничения, мешающие прочитать конфигурационный файл
         if (file.exists()) {

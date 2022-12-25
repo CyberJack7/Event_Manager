@@ -1,5 +1,7 @@
 package Server;
 
+import Data.Event;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,44 +31,44 @@ public class EventDBManager {
     }
 
     //добавление мероприятия в БД
-    public static int addEventInDB(HashMap<String, String> event) throws SQLException {
+    public static int addEventInDB(Event event) throws SQLException {
         Connection conn = DBManager.getInstance().getConn();
         String sql = "INSERT INTO public.event (event_name,subject,date,place,event_type_id,genre_id,description,program) "
                 + "VALUES (?,?,?,?,?,?,?,?);";
         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        pstmt.setString(1, event.get("name"));
-        if (!Objects.equals(event.get("subject"), "")) {
-            pstmt.setString(2, event.get("subject"));
+        pstmt.setString(1, event.getEventName());
+        if (!Objects.equals(event.getSubject(), "")) {
+            pstmt.setString(2, event.getSubject());
         } else {
             pstmt.setNull(2, java.sql.Types.NULL);
         }
-        if (!Objects.equals(event.get("date"), "")) {
-            pstmt.setString(3, event.get("date"));
+        if (!Objects.equals(event.getDate(), "")) {
+            pstmt.setString(3, event.getDate());
         } else {
             pstmt.setNull(3, java.sql.Types.NULL);
         }
-        if (!Objects.equals(event.get("place"), "")) {
-            pstmt.setString(4, event.get("place"));
+        if (!Objects.equals(event.getPlace(), "")) {
+            pstmt.setString(4, event.getPlace());
         } else {
             pstmt.setNull(4, java.sql.Types.NULL);
         }
-        if (!Objects.equals(event.get("type"), "Не выбрано")) {
-            pstmt.setInt(5, Queries.getEventTypeId(event.get("type")));
+        if (!Objects.equals(event.getEventType(), "Не выбрано")) {
+            pstmt.setInt(5, Queries.getEventTypeId(event.getEventType()));
         } else {
             pstmt.setNull(5, java.sql.Types.NULL);
         }
-        if (!Objects.equals(event.get("genre"), "Не выбрано")) {
-            pstmt.setInt(6, Queries.getGenreId(event.get("genre")));
+        if (!Objects.equals(event.getGenre(), "Не выбрано")) {
+            pstmt.setInt(6, Queries.getGenreId(event.getGenre()));
         } else {
             pstmt.setNull(6, java.sql.Types.NULL);
         }
-        if (!Objects.equals(event.get("description"), "")) {
-            pstmt.setString(7, event.get("description"));
+        if (!Objects.equals(event.getDescription(), "")) {
+            pstmt.setString(7, event.getDescription());
         } else {
             pstmt.setNull(7, java.sql.Types.NULL);
         }
-        if (!Objects.equals(event.get("program"), "")) {
-            pstmt.setString(8, event.get("program"));
+        if (!Objects.equals(event.getProgram(), "")) {
+            pstmt.setString(8, event.getProgram());
         } else {
             pstmt.setNull(8, java.sql.Types.NULL);
         }
@@ -81,11 +83,11 @@ public class EventDBManager {
     }
 
     //удаление мероприятий из БД
-    public static void deleteEventFromDB(ArrayList<Integer> deletedEvents) throws SQLException {
-        for (Integer event_id : deletedEvents) {
+    public static void deleteEventFromDB(ArrayList<Event> deletedEvents) throws SQLException {
+        for (Event event : deletedEvents) {
             Connection conn = DBManager.getInstance().getConn();
             Statement stmt = conn.createStatement();
-            String sql = "DELETE FROM public.event WHERE event_id = " + event_id;
+            String sql = "DELETE FROM public.event WHERE event_id = " + event.getEventId();
             stmt.executeUpdate(sql);
             stmt.close();
         }

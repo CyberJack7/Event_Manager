@@ -58,37 +58,37 @@ public class eventTableModel extends AbstractTableModel {
             case 0:
                 return event.getEventName();
             case 1:
-                if (event.getSubject() == null) {
+                if (event.getSubject() == null | Objects.equals(event.getSubject(), "")) {
                     return "-";
                 }
                 return event.getSubject();
             case 2:
-                if (event.getDate() == null) {
+                if (event.getDate() == null | Objects.equals(event.getDate(), "")) {
                     return "-";
                 }
                 return event.getDate();
             case 3:
-                if (event.getPlace() == null) {
+                if (event.getPlace() == null | Objects.equals(event.getPlace(), "")) {
                     return "-";
                 }
                 return event.getPlace();
             case 4:
-                if (event.getEventType() == null) {
+                if (event.getEventType() == null | Objects.equals(event.getEventType(), "")) {
                     return "-";
                 }
                 return event.getEventType();
             case 5:
-                if (event.getGenre() == null) {
+                if (event.getGenre() == null | Objects.equals(event.getGenre(), "")) {
                     return "-";
                 }
                 return event.getGenre();
             case 6:
-                if (event.getDescription() == null) {
+                if (event.getDescription() == null | Objects.equals(event.getDescription(), "")) {
                     return "-";
                 }
                 return event.getDescription();
             case 7:
-                if (event.getProgram() == null) {
+                if (event.getProgram() == null | Objects.equals(event.getProgram(), "")) {
                     return "-";
                 }
                 return event.getProgram();
@@ -118,7 +118,7 @@ public class eventTableModel extends AbstractTableModel {
                         if (confirmation == JOptionPane.YES_OPTION) {
                             event.setEventName((String) aValue);
                             try {
-                                Event.updateEventName((String) aValue, event.getEventId());
+                                ClientService.getInstance().getService().updateEventName((String) aValue, event.getEventId());
                             } catch (MalformedURLException | SQLException e) {
                                 throw new RuntimeException(e);
                             }
@@ -143,7 +143,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setSubject((String) aValue);
                         try {
-                            Event.updateSubject((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updateSubject((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
@@ -162,7 +162,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setDate((String) aValue);
                         try {
-                            Event.updateDate((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updateDate((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
@@ -181,7 +181,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setPlace((String) aValue);
                         try {
-                            Event.updatePlace((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updatePlace((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
@@ -200,7 +200,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setEventType((String) aValue);
                         try {
-                            Event.updateEventType((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updateEventType((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
@@ -219,7 +219,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setGenre((String) aValue);
                         try {
-                            Event.updateGenre((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updateGenre((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
@@ -238,7 +238,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setDescription((String) aValue);
                         try {
-                            Event.updateDescription((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updateDescription((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
@@ -257,7 +257,7 @@ public class eventTableModel extends AbstractTableModel {
                     if (confirmation == JOptionPane.YES_OPTION) {
                         event.setProgram((String) aValue);
                         try {
-                            Event.updateProgram((String) aValue, event.getEventId());
+                            ClientService.getInstance().getService().updateProgram((String) aValue, event.getEventId());
                         } catch (MalformedURLException | SQLException e) {
                             throw new RuntimeException(e);
                         }
